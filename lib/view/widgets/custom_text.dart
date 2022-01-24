@@ -9,7 +9,7 @@ class CustomText extends StatelessWidget {
   final Color color;
 
   final Alignment alignment;
-
+  final TextDecoration decoration;
   final int maxLine;
   final double height;
 
@@ -20,6 +20,7 @@ class CustomText extends StatelessWidget {
     this.alignment = Alignment.topLeft,
     this.maxLine,
     this.height = 1,
+    this.decoration,
   });
 
   @override
@@ -29,10 +30,10 @@ class CustomText extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: color,
-          height: height,
-          fontSize: fontSize,
-        ),
+            color: color,
+            height: height,
+            fontSize: fontSize,
+            decoration: decoration),
         maxLines: maxLine,
       ),
     );

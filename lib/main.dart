@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: Binding(),
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: ControlView(),
       ),
       theme: ThemeData(

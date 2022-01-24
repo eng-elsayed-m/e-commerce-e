@@ -2,7 +2,7 @@ import 'package:ecommerce_app/helper/extenstion.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProductModel {
-  String name, image, description, sized, price;
+  String name, image, description, sized, price, marketPrice, cashBack, points;
   Color color;
 
   ProductModel(
@@ -17,13 +17,15 @@ class ProductModel {
     if (map == null) {
       return;
     }
-
     name = map['name'];
     image = map['image'];
     description = map['description'];
     color = HexColor.fromHex(map['color']);
     sized = map['sized'];
     price = map['price'];
+    cashBack = map["cashBack"];
+    points = map["points"];
+    marketPrice = map["marketPrice"];
   }
 
   toJson() {
@@ -34,6 +36,9 @@ class ProductModel {
       'color': color,
       'sized': sized,
       'price': price,
+      "cashBack": cashBack,
+      "points": points,
+      "marketPrice": marketPrice,
     };
   }
 }

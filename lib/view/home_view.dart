@@ -158,14 +158,28 @@ class HomeView extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    CustomText(
-                      text: controller.productModel[index].name,
-                      alignment: Alignment.bottomLeft,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: controller.productModel[index].name,
+                          alignment: Alignment.bottomLeft,
+                        ),
+                        CustomText(
+                          text: "Get " +
+                              controller.productModel[index].points +
+                              " points",
+                          alignment: Alignment.bottomRight,
+                          color: Colors.lightGreen,
+                          fontSize: 12,
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Expanded(
+                      flex: 0,
                       child: CustomText(
                         text: controller.productModel[index].description,
                         color: Colors.grey,
@@ -175,12 +189,26 @@ class HomeView extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    CustomText(
-                      text: controller.productModel[index].price.toString() +
-                          " \$",
-                      color: primaryColor,
-                      alignment: Alignment.bottomLeft,
-                    ),
+                    Row(
+                      children: [
+                        CustomText(
+                          text:
+                              controller.productModel[index].price.toString() +
+                                  " \$",
+                          color: primaryColor,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        CustomText(
+                          text: controller.productModel[index].marketPrice
+                                  .toString() +
+                              " \$",
+                          color: Colors.grey,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

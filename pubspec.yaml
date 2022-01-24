@@ -17,6 +17,7 @@ dependencies:
   firebase_auth: "^0.18.4"
   cloud_firestore: "^0.14.4"
   flutter_facebook_auth: "^1.0.0"
+  flutter_image_slideshow: ^0.1.2
 
 dev_dependencies:
   build_runner: ^1.10.0

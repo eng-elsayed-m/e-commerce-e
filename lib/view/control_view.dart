@@ -8,7 +8,7 @@ class ControlView extends GetWidget<AuthViewModel> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return (Get.find<AuthViewModel>().user == null)
+      return (Get.find<AuthViewModel>().user != null)
           ? LoginView()
           : GetBuilder<ControlViewModel>(
               builder: (controller) => Scaffold(

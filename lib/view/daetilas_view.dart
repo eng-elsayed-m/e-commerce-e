@@ -3,9 +3,10 @@ import 'package:ecommerce_app/model/product_model.dart';
 import 'package:ecommerce_app/view/widgets/custom_buttom.dart';
 import 'package:ecommerce_app/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 class DetailsView extends StatelessWidget {
-  ProductModel model;
+  final ProductModel model;
 
   DetailsView({this.model});
 
@@ -16,13 +17,22 @@ class DetailsView extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: 270,
-              child: Image.network(
-                model.image,
-                fit: BoxFit.fill,
-              ),
-            ),
+                width: MediaQuery.of(context).size.width,
+                height: 270,
+                child: ImageSlideshow(
+                  width: double.infinity,
+                  height: 200,
+                  initialPage: 0,
+                  indicatorColor: Theme.of(context).colorScheme.secondary,
+                  indicatorBackgroundColor: Colors.grey,
+                  // onPageChanged: (value) {},
+                  autoPlayInterval: 3000,
+                  children: [
+                    SliderImage(model: model),
+                    SliderImage(model: model),
+                    SliderImage(model: model),
+                  ],
+                )),
             SizedBox(
               height: 15,
             ),
@@ -32,9 +42,20 @@ class DetailsView extends StatelessWidget {
                   padding: EdgeInsets.all(18),
                   child: Column(
                     children: [
-                      CustomText(
-                        text: model.name,
-                        fontSize: 26,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomText(
+                            text: model.name,
+                            fontSize: 26,
+                          ),
+                          CustomText(
+                            text: "Get " + model.points + " points",
+                            alignment: Alignment.bottomRight,
+                            color: Colors.lightGreen,
+                            fontSize: 20,
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 15,
@@ -127,6 +148,15 @@ class DetailsView extends StatelessWidget {
                         text: ' \$' + model.price,
                         color: primaryColor,
                         fontSize: 18,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      CustomText(
+                        text: ' \$' + model.marketPrice,
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough,
+                        fontSize: 18,
                       )
                     ],
                   ),
@@ -144,6 +174,33 @@ class DetailsView extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SliderImage extends StatelessWidget {
+  const SliderImage({
+    Key key,
+    @required this.model,
+  }) : super(key: key);
+
+  final ProductModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onDoubleTap: () {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Image.network(model.image),
+          ),
+        );
+      },
+      child: Image.network(
+        model.image,
+        fit: BoxFit.cover,
       ),
     );
   }
